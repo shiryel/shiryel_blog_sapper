@@ -1,0 +1,89 @@
+<h1 id="how-to-add-svelte-on-elixir-phoenix-framework">How to add svelte on Elixir Phoenix Framework</h1>
+<h2 id="adding-the-svelte-and-svelte-loader">Adding the Svelte and Svelte-Loader</h2>
+<p>To do that, run this on the root dir of your phoenix project:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="bu">cd</span> assets <span class="kw">&amp;&amp;</span> <span class="ex">npm</span> install svelte svelte-loader --save</span></code></pre></div>
+<h2 id="configuring-the-webpack">Configuring the webpack</h2>
+<p>Based on: https://github.com/sveltejs/template-webpack</p>
+<p>First add this on asserts/webpack.config.js:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>resolve<span class="op">:</span> {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    <span class="dt">alias</span><span class="op">:</span> {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>        <span class="dt">svelte</span><span class="op">:</span> path<span class="op">.</span><span class="fu">resolve</span>(<span class="st">&#39;node_modules&#39;</span><span class="op">,</span> <span class="st">&#39;svelte&#39;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    }<span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    <span class="dt">extensions</span><span class="op">:</span> [<span class="st">&#39;.mjs&#39;</span><span class="op">,</span> <span class="st">&#39;.js&#39;</span><span class="op">,</span> <span class="st">&#39;.svelte&#39;</span>]<span class="op">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    <span class="dt">mainFields</span><span class="op">:</span> [<span class="st">&#39;svelte&#39;</span><span class="op">,</span> <span class="st">&#39;browser&#39;</span><span class="op">,</span> <span class="st">&#39;module&#39;</span><span class="op">,</span> <span class="st">&#39;main&#39;</span>]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>}</span></code></pre></div>
+<p>Then add:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>{</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>    <span class="dt">test</span><span class="op">:</span> <span class="ss">/</span><span class="sc">\.</span><span class="ss">svelte</span><span class="sc">$</span><span class="ss">/</span><span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="dt">use</span><span class="op">:</span> {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>        <span class="dt">loader</span><span class="op">:</span> <span class="st">&#39;svelte-loader&#39;</span><span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>        <span class="dt">options</span><span class="op">:</span> {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>            <span class="dt">emitCss</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>            <span class="dt">hotReload</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>        }</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    }</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>}</span></code></pre></div>
+<p>For the config explanations see: https://github.com/sveltejs/svelte-loader</p>
+<h2 id="adding-the-function-on-phoenix">Adding the function on Phoenix</h2>
+<p>On your APP_web.ex in the function <code>view_helpers</code> add the function:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode elixir"><code class="sourceCode elixir"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="ot">@doc &quot;&quot;&quot;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">Will add a component from the asserts/js/svelte, the component must have the same </span><span class="in">`file_name`</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="ot">&quot;&quot;&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="ot">@spec</span> svelte(bitstring(), map()) :: <span class="cn">Phoenix</span><span class="op">.</span><span class="cn">HTML</span><span class="op">.</span>safe()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="kw">def</span> svelte(file_name, props \\ %{}) <span class="kw">do</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>  {<span class="va">:ok</span>, props} <span class="op">=</span> <span class="cn">Jason</span><span class="op">.</span>encode(props)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>  tag <span class="op">=</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>    <span class="cn">Phoenix</span><span class="op">.</span><span class="cn">HTML</span><span class="op">.</span><span class="cn">Tag</span><span class="op">.</span>tag(<span class="va">:div</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>      <span class="va">data:</span> [<span class="va">props:</span> props],</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>      <span class="va">class:</span> <span class="st">&quot;__svelte__-</span><span class="ot">#{</span>file_name<span class="ot">}</span><span class="st">&quot;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>    )</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>    <span class="op">|&gt;</span> <span class="cn">Phoenix</span><span class="op">.</span><span class="cn">HTML</span><span class="op">.</span>safe_to_string()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>  <span class="cn">Phoenix</span><span class="op">.</span><span class="cn">HTML</span><span class="op">.</span>raw(tag <span class="op">&lt;&gt;</span> <span class="st">&quot;&lt;/div&gt;&quot;</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
+<p><code>Note: You can define this function in another file and import if you want a more clean solution</code></p>
+<h2 id="mounting-the-svelte-component">Mounting the svelte component</h2>
+<p>Finally we need to get the svelte file and mount on the element defined by the function above, for this we create a file <code>svelte.js</code> on assets/js/</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">// This code will look in the assets/js/svelte/ and in the sub-directorys for</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">// .svelte files, the result of this files will be mounted on the element</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co">// &quot;svelte-file_name&quot; who have props from the phoenix render(name, props)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">// directory, useSubdirectories, regex</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="kw">const</span> context <span class="op">=</span> require<span class="op">.</span><span class="fu">context</span>(<span class="st">&quot;./svelte&quot;</span><span class="op">,</span> <span class="kw">true</span><span class="op">,</span> <span class="ss">/</span><span class="sc">\.</span><span class="ss">svelte</span><span class="sc">$</span><span class="ss">/</span>)<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="bu">window</span><span class="op">.</span><span class="at">onload</span> <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>  context<span class="op">.</span><span class="fu">keys</span>()<span class="op">.</span><span class="fu">forEach</span>(file_path <span class="kw">=&gt;</span> {</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>    <span class="co">// name that will be requeride by render(name, props)</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>    <span class="kw">const</span> file_name <span class="op">=</span> file_path<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/</span><span class="sc">\.\/|\.</span><span class="ss">svelte</span><span class="sc">$</span><span class="ss">/g</span><span class="op">,</span> <span class="st">&quot;&quot;</span>)<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>    <span class="co">// COMPONENT</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>    <span class="kw">const</span> component_name <span class="op">=</span> <span class="vs">`svelte-</span><span class="sc">${</span>file_name<span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a>    <span class="kw">const</span> component_container <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(component_name)<span class="op">;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>    <span class="cf">if</span> (<span class="op">!</span>component_container) {</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>      <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>    }</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a>    <span class="co">// PROPS</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a>    <span class="kw">const</span> { props } <span class="op">=</span> component_container<span class="op">.</span><span class="at">dataset</span><span class="op">;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a>    <span class="kw">let</span> my_props <span class="op">=</span> {}<span class="op">;</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a>    <span class="cf">if</span> (props) {</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a>      my_props <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(props)<span class="op">;</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a>    }</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a>    <span class="co">// MOUNT ON</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a>    <span class="kw">const</span> App <span class="op">=</span> <span class="pp">require</span>(<span class="vs">`./svelte/</span><span class="sc">${</span>file_name<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a>    <span class="kw">new</span> App<span class="op">.</span><span class="fu">default</span>({</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true"></a>      <span class="dt">target</span><span class="op">:</span> component_container<span class="op">,</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true"></a>      <span class="dt">props</span><span class="op">:</span> my_props</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true"></a>    })<span class="op">;</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true"></a>  })<span class="op">;</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true"></a>}<span class="op">;</span></span></code></pre></div>
+<h2 id="testing">Testing</h2>
+<p>Just create a component and add a</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode elixir"><code class="sourceCode elixir"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="op">&lt;%=</span> svelte <span class="st">&quot;YOUR_COMPONENT_FILE_NAME&quot;</span>, %{<span class="va">some_var:</span> <span class="st">&quot;some value&quot;</span>} %<span class="op">&gt;</span></span></code></pre></div>
+<p>on a template :)</p>
+<p>Note 1: Yes, the YOUR_COMPONENT_FILE_NAME is the name of your file, please change it ;)</p>
+<p>Note 2: The props will be used on your <code>export</code> variables on the svelte component</p>
+<p>Note 3: This code is used on this blog :)</p>
