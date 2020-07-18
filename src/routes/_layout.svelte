@@ -19,4 +19,3 @@
   <Footer />
   <slot />
 </main>
-

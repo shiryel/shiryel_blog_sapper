@@ -1,23 +1,18 @@
 <script context="module">
-  export async function preload({ params, query }) {
-    // the `slug` parameter is available because
-    // this file is called [slug].svelte
-    const res_info = await this.fetch(`post/${params.slug}.json`);
-    const data_info = await res_info.json();
-
-    const res_page = await this.fetch(`post_raw/${params.slug}`);
-    const data_page = await res_page.text();
-
-    if (res_info.status !== 200) this.error(res_info.status, data_info.message);
-
-    if (res_page.status !== 200) this.error(res_page.status, data_page.message);
-
-    return { post: { title: data_info.title, html: data_page } };
+  export function preload({ params, query }) {
+    return this.fetch(`blog.json`)
+      .then((r) => r.json())
+      .then((posts) => {
+        console.log(posts);
+        return { posts };
+      });
   }
 </script>
 
 <script>
-  export let post;
+  import CardList from "../../components/card_list.svelte"
+
+	export let posts;
 </script>
 
 <style>
@@ -29,15 +24,17 @@
 		so we have to use the :global(...) modifier to target
 		all elements inside .content
 	*/
+  .content :global(h1) {
+    text-align: center;
+    padding: 2em;
+  }
   .content :global(h2) {
-    font-size: 1.4em;
+    font-size: 1.5em;
     font-weight: 500;
   }
-
   .content :global(ul) {
     line-height: 1.5;
   }
-
   .content :global(li) {
     margin: 0 0 0.5em 0;
   }
@@ -50,13 +47,12 @@
     border-top: 1px solid black;
     border-bottom: 1px solid black;
   }
-
   button {
     background-color: #c2c2c2;
     width: 200px;
     margin: 20px;
+    margin: 3em;
   }
-
   aside {
     display: flex;
     justify-content: center;
@@ -64,16 +60,19 @@
 </style>
 
 <svelte:head>
-  <title>{post.title}</title>
+  <link href="prism.css" rel="stylesheet" />
 </svelte:head>
 
 <aside>
   <button onclick="location.href='/'">Home</button>
 </aside>
-
 <article class="content">
-  {@html post.html}
+  <slot />
 </article>
 <aside>
   <button onclick="location.href='/'">Home</button>
+</aside>
+
+<aside>
+  <CardList name=More cards={posts} />
 </aside>

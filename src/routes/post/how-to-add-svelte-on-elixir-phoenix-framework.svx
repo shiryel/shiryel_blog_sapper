@@ -1,3 +1,10 @@
+---
+---
+
+<svelte:head>
+  <title>How to add svelte on Elixir Phoenix Framework</title>
+</svelte:head>
+
 # How to add svelte on Elixir Phoenix Framework
 
 ## Adding the Svelte and Svelte-Loader
@@ -13,7 +20,7 @@ Based on: https://github.com/sveltejs/template-webpack
 
 First add this on asserts/webpack.config.js:
 
-```javascript
+```js
 resolve: {
 	alias: {
 		svelte: path.resolve('node_modules', 'svelte')
