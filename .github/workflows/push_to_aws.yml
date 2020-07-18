@@ -1,0 +1,41 @@
+name: Push to AWS [CD]
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14.x 
+    
+    - name: NPM - install
+      run: npm i
+    
+    - name: NPM - export
+      run: npm run export
+
+    - name: AWS - Set PEM
+      run: |
+        echo "${{ secrets.AWS_PEM }}" > temp.pem
+        chmod 400 temp.pem
+
+    - name: AWS - Exclude last files if exists
+      run: |
+           ssh -q -o "StrictHostKeyChecking no" -i temp.pem ${{ secrets.AWS_SSH }} \
+             rm -r /www/shiryel_blog/*
+
+    - name: AWS - Send new files to server
+      if: success() || failure()
+      run: |
+        scp -o "StrictHostKeyChecking no" -i temp.pem  -r \
+          __sapper__/export/* ${{ secrets.AWS_SSH }}:/www/shiryel_blog/
+
+    - name: AWS - Clear PEM
+      if: always()
+      run: rm -f temp.pem
