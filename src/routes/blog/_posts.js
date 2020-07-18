@@ -12,7 +12,8 @@ const posts = [
 		title: 'How to add Svelte on Elixir Phoenix Framework',
 		slug: 'how-to-add-svelte-on-elixir-phoenix-framework',
     description: '',
-    tags: ['elixir', 'svelte']
+    tags: ['elixir', 'svelte'],
+    date: "2020-07-17"
 	}
 ];
 

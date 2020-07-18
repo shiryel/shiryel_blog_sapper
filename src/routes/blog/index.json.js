@@ -5,7 +5,8 @@ const contents = JSON.stringify(posts.map(post => {
 		title: post.title,
 		slug: post.slug,
     description: post.description,
-    tags: post.tags
+    tags: post.tags,
+    date: post.date
 	};
 }));
 
