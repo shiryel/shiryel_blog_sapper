@@ -2,13 +2,7 @@ name: Push to AWS [CD]
 
 on:
   push:
-    paths:
-      - '.github/workflows/push_to_aws.yml'
-      - 'export/**'
-  pull_request:
-    paths:
-      - '.github/workflows/push_to_aws.yml'
-      - 'export/**'
+    branches: [ master ]
 
 jobs:
   build:
