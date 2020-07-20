@@ -9,6 +9,13 @@
 
 const posts = [
 	{
+		title: 'How to push a static website to AWS using github actions',
+		slug: 'how-to-push-a-static-website-to-aws-using-github-actions',
+    description: '',
+    tags: ['github actions', 'aws', 'continuous integration'],
+    date: "2020-07-20"
+	},
+	{
 		title: 'How to add Svelte on Elixir Phoenix Framework',
 		slug: 'how-to-add-svelte-on-elixir-phoenix-framework',
     description: '',

@@ -125,5 +125,3 @@ on a template :)
 Note 1: Yes, the YOUR\_COMPONENT\_FILE_NAME is the name of your file, please change it ;)
 
 Note 2: The props will be used on your `export` variables on the svelte component
-
-Note 3: This code is used on this blog :)

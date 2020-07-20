@@ -27,11 +27,11 @@
 
   @media (min-width: 1000px) {
     .name {
-      width: 950px;
+      width: 970px;
     }
 
     .cards {
-      width: 950px;
+      width: 970px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
