@@ -4,6 +4,7 @@
 
 <style>
   a {
+    position: absolute;
     background: #545454;
     color: white;
     text-decoration: none;
