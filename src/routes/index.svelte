@@ -17,13 +17,16 @@
 </script>
 
 <style>
-  div {
+  section {
     display: grid;
-    grid-template-columns: auto;
     grid-gap: 5em;
   }
 
-  @media (min-width: 480px) {
+  @media (min-width: 1600px) {
+    section {
+      display: grid;
+      grid-gap: 5em;
+    }
   }
 </style>
 
@@ -31,8 +34,8 @@
   <title>Shiryel's Blog</title>
 </svelte:head>
 
-<div>
-  <Welcome />
-  <CardList name="Featured" cards={posts} />
-  <CardList name="Last Posts" cards={posts} />
-</div>
+<section>
+    <Welcome />
+    <CardList name="Featured" cards={posts} />
+    <CardList name="Last Posts" cards={posts} />
+</section>

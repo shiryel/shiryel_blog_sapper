@@ -4,6 +4,7 @@
 
 <style>
   div {
+    position: absolute;
     display: grid;
     grid-template-columns: repeat(2, auto);
     grid-gap: 2em;
@@ -20,6 +21,7 @@
     left: 0;
     top: 0;
     text-align: center;
+    z-index: 10;
   }
 
   a {

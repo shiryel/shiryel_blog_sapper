@@ -115,7 +115,7 @@
 
   p {
     font-size: 1.2em;
-    color: #226988;
+    color: #680578;
   }
 
   h1 {
@@ -135,6 +135,5 @@
   <p>{welcome} to </p>
   <h1>Shiryel's Blog</h1>
   <p class="info_text">{info_text}</p>
-  <span>...</span>
-  <span>WORK IN PROGRESS</span>
+  <span>This is just a place where I put some reminders for myself, but maybe you find something useful</span>
 </div>

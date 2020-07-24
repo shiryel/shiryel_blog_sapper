@@ -10,9 +10,9 @@
 </script>
 
 <script>
-  import CardList from "../../components/card_list.svelte"
+  import CardList from "../../components/card_list.svelte";
 
-	export let posts;
+  export let posts;
 </script>
 
 <style>
@@ -39,20 +39,34 @@
     margin: 0 0 0.5em 0;
   }
 
+  div {
+    background-color: #CEDEED;
+    padding: 1em;
+  }
+
   article {
     text-align: left;
-    max-width: 950px;
-    margin: 0 auto;
-    font-size: 1rem;
+    font-size: 1em;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
   }
-  button {
+
+  a {
     background-color: #c2c2c2;
     width: 200px;
-    margin: 20px;
-    margin: 3em;
+    margin: 2em;
+    padding: 0.7em;
+    border: 1px solid white;
+    border-radius: 2em;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
   }
+
+  a:hover {
+    border: 1px solid #CDCDCD;
+  }
+
   aside {
     display: flex;
     justify-content: center;
@@ -63,16 +77,19 @@
   <link href="prism.css" rel="stylesheet" />
 </svelte:head>
 
-<aside>
-  <button onclick="location.href='/'">Home</button>
-</aside>
-<article class="content">
-  <slot />
-</article>
-<aside>
-  <button onclick="location.href='/'">Home</button>
-</aside>
+<div>
+  <aside>
+    <a href="/">Home</a>
+  </aside>
 
-<aside>
-  <CardList name=More cards={posts} />
-</aside>
+  <article class="content">
+    <slot />
+  </article>
+  <aside>
+    <a href="/">Home</a>
+  </aside>
+
+  <aside>
+    <CardList name="More" cards={posts} />
+  </aside>
+</div>

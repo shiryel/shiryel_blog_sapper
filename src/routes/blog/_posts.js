@@ -9,6 +9,13 @@
 
 const posts = [
 	{
+		title: 'How to use only one certificate with certbot and nginx',
+		slug: 'how-to-use-only-one-certificate-with-certbot-and-nginx',
+    description: '',
+    tags: ['nginx', 'certbot', 'aws', 'continuous integration'],
+    date: "2020-07-23"
+	},
+	{
 		title: 'How to push a static website to AWS using github actions',
 		slug: 'how-to-push-a-static-website-to-aws-using-github-actions',
     description: '',
