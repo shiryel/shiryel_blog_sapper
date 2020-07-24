@@ -4,7 +4,7 @@
 
 <style>
   a {
-    position: absolute;
+    position: fixed;
     background: #545454;
     color: white;
     text-decoration: none;
@@ -15,11 +15,11 @@
     margin-left: 1em;
     left: 0;
     bottom: 0;
+    z-index: 10;
   }
 
   @media (min-width: 1575px) {
     a {
-      position: fixed;
       margin-left: 12em;
     }
   }

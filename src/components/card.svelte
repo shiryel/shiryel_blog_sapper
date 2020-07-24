@@ -1,4 +1,6 @@
 <script>
+  import Saos from "saos/src/Saos.svelte";
+
   export let title = "";
   export let slug = "";
   export let description = "";
@@ -9,7 +11,6 @@
   a {
     display: flex;
     background: none;
-    width: 100%;
     border: 1px solid white;
     flex-direction: column;
     margin-bottom: 5px;
@@ -18,7 +19,7 @@
     border-left: 1px solid black;
     border-top-right-radius: 10px;
     text-align: left;
-    background-color: #dedede;
+    background-color: white;
   }
 
   a:hover {
@@ -60,6 +61,11 @@
   }
 </style>
 
+<Saos
+  animation={'fade-in 0.3s cubic-bezier(0.35, 0.5, 0.65, 0.95) both'}
+  animation_out={'fade-out 0.3s cubic-bezier(0.35, 0.5, 0.65, 0.95) both'}
+  top=50
+  bottom=50>
 <a href={`/post/${slug}`}>
   <div>
     <h3>{title}</h3>
@@ -71,3 +77,4 @@
     {/each}
   </aside>
 </a>
+</Saos>
