@@ -30,7 +30,6 @@
   }
   .content :global(h2) {
     font-size: 1.5em;
-    font-weight: 500;
   }
   .content :global(ul) {
     line-height: 1.5;

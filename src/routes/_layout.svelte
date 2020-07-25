@@ -30,6 +30,8 @@
     background-color: #cedeed;
     box-shadow: 0px 5px 5px black;
     justify-self: center;
+    max-width: 1000px;
+    width: 100vw;
   }
 
   @media (min-width: 1600px) {
