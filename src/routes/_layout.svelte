@@ -57,7 +57,7 @@
 <Bounjour />
 <Social />
 <Footer />
-<img src="background.jpg" alt="" class="background-1" />
+<img src="background.jpg" alt="A mountain background" class="background-1" />
 <main>
   <aside />
   <div class="background-2">

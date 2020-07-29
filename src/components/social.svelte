@@ -3,10 +3,10 @@
 </script>
 
 <style>
-  div {
+  .left {
     position: absolute;
     display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(1, auto);
     grid-gap: 2em;
     background: #545454;
     color: white;
@@ -24,20 +24,77 @@
     z-index: 10;
   }
 
+  .right {
+    position: absolute;
+    color: white;
+    padding: 0.3em;
+    padding-right: 1em;
+    padding-top: 0.3em;
+    margin-left: 1em;
+    right: 0;
+    top: 0;
+    z-index: 10;
+  }
+
+  .social {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    top: 5%;
+    overflow: hidden;
+    background-image: linear-gradient(to bottom, #cedeed, #88acdf);
+    border-radius: 10px;
+  }
+
   a {
     text-decoration: none;
   }
 
   @media (min-width: 1000px) {
-    div {
+    .left {
       position: fixed;
       margin-left: 10em;
+    }
+
+    .right {
+      padding-right: 20%;
+      padding-top: 1em;
+    }
+  }
+
+  @media (min-width: 1700px) {
+    .social {
+      display: block;
     }
   }
 </style>
 
-<div>
+<div class="left">
   <a href="https://www.shiryel.com/" target="_blank">Shiryel's Den</a>
+</div>
+<div class="right">
+  <a
+    href="https://twitter.com/shiryel_?ref_src=twsrc%5Etfw"
+    class="twitter-follow-button"
+    data-show-count="false"
+    data-size="large">
+    Follow @shiryel_
+  </a>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
 
-  <a href="https://twitter.com/shiryel_" target="_blank">Twitter</a>
+  </script>
+</div>
+<div class="social">
+  <a
+    class="twitter-timeline"
+    href="https://twitter.com/shiryel_?ref_src=twsrc%5Etfw"
+    data-width="350"
+    data-height="90vh"
+    data-chrome="nofooter noborders transparent">
+    Tweets by shiryel_
+  </a>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
+
+  </script>
 </div>

@@ -98,6 +98,8 @@
     <a href="/">Home</a>
   </aside>
 
+
+
   <aside>
     <CardList name="More" cards={posts} />
   </aside>
