@@ -48,7 +48,7 @@
     margin: 0 0 0.5em 0;
   }
 
-  div {
+  .div {
     background-image: linear-gradient(to bottom, #cedeed, #88acdf);
     padding: 1em;
   }
@@ -73,7 +73,13 @@
   }
 
   a:hover {
-    border: 1px solid #CDCDCD;
+    border: 1px solid #cdcdcd;
+  }
+
+  .twitter {
+    display: flex;
+    padding-top: 15px;
+    justify-content: center;
   }
 
   aside {
@@ -86,7 +92,7 @@
   <link href="prism.css" rel="stylesheet" />
 </svelte:head>
 
-<div>
+<div class="div">
   <aside>
     <a href="/">Home</a>
   </aside>
@@ -94,13 +100,23 @@
   <article class="content">
     <slot />
   </article>
+
+  <div class="twitter">
+    <a
+      class="twitter-share-button"
+      href="https://twitter.com/intent/tweet?text=Take%20a%20look%20on%20this%20"
+      data-size="large"
+      data-hashtags="shiryel_blog">
+      Tweet
+    </a>
+  </div>
+
   <aside>
     <a href="/">Home</a>
   </aside>
 
-
-
   <aside>
     <CardList name="More" cards={posts} />
   </aside>
+
 </div>
