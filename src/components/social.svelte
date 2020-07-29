@@ -47,6 +47,8 @@
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     box-shadow: 0px 5px 5px black;
+    max-width: 300;
+    overflow: hidden;
   }
 
   a {

@@ -1,7 +1,11 @@
+<script context="module">
+</script>
+
 <script>
   import Footer from "../components/footer.svelte";
   import Social from "../components/social.svelte";
   import Bounjour from "../components/bounjour.svelte";
+  import LibLoader from "../components/lib_loader.svelte";
 </script>
 
 <style>
@@ -54,6 +58,7 @@
   }
 </style>
 
+<LibLoader url="https://platform.twitter.com/widgets.js" />
 <Bounjour />
 <Social />
 <Footer />
