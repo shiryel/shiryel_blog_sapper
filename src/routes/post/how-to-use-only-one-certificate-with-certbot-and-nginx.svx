@@ -1,6 +1,12 @@
 ---
 ---
 
+<svelte:head>
+  <title>How to use only one certificate with certbot and nginx</title>
+  <meta name="description" content="A blog post as a reminder on how to use only one certificate with certbot and nginx">
+  <meta name="keywords" content="aws, certbot, nginx">
+</svelte:head>
+
 # How to use only one certificate with certbot and nginx
 
 This is more a reminder for myself but anyway

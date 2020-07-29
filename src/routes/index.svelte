@@ -31,6 +31,8 @@
 </style>
 
 <svelte:head>
+  <meta name="description" content="Shiryel blog with tips on how to work with not so trivial things and others">
+  <meta name="keywords" content="shiryel, blog, elixir, aws, svelte">
   <title>Shiryel's Blog</title>
 </svelte:head>
 

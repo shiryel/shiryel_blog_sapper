@@ -3,6 +3,8 @@
 
 <svelte:head>
   <title>How to push a static website to AWS using github actions</title>
+  <meta name="description" content="A blog post as a reminder on how to work with static websites on AWS using github actions">
+  <meta name="keywords" content="aws, github actions, static website">
 </svelte:head>
 
 # How to push a static website to AWS using github actions

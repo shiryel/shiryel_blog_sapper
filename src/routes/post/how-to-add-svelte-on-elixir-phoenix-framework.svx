@@ -3,6 +3,8 @@
 
 <svelte:head>
   <title>How to add svelte on Elixir Phoenix Framework</title>
+  <meta name="description" content="A blog post as a reminder on how to work with svelte on Elixir">
+  <meta name="keywords" content="elixir, svelte">
 </svelte:head>
 
 # How to add svelte on Elixir Phoenix Framework
