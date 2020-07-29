@@ -12,6 +12,9 @@
 	<link rel='manifest' href='manifest.json' crossorigin='use-credentials'>
 	<link rel='icon' type='image/png' href='favicon.png'>
 
+  <!-- from https://platform.twitter.com/widgets.js -->
+  <script async src="js/twitter_widgets.js"></script>
+
 	<!-- Sapper generates a <style> tag containing critical CSS
 	     for the current page. CSS for the rest of the app is
 	     lazily loaded when it precaches secondary pages -->
@@ -20,25 +23,6 @@
 	<!-- This contains the contents of the <svelte:head> component, if
 	     the current page has one -->
 	%sapper.head%
-
-  <script>
-    window.twttr = (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
-  
-      t._e = [];
-      t.ready = function(f) {
-        t._e.push(f);
-      };
-  
-      return t;
-    }(document, "script", "twitter-wjs"));
-  </script>
 </head>
 <body>
 	<!-- The application will be rendered inside this element,
