@@ -1,6 +1,3 @@
-<script context="module">
-</script>
-
 <script>
   import Footer from "../components/footer.svelte";
   import Social from "../components/social.svelte";
