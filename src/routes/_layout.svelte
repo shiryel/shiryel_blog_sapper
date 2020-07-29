@@ -6,6 +6,15 @@
   import Social from "../components/social.svelte";
   import Bounjour from "../components/bounjour.svelte";
   import LibLoader from "../components/lib_loader.svelte";
+
+  import { onMount } from 'svelte';
+
+  // For some reason the twitter widget load 2 times
+  let loaded = 0;
+
+  onMount(async () => {
+    loaded += 1; 
+  });
 </script>
 
 <style>
@@ -58,7 +67,10 @@
   }
 </style>
 
+{#if loaded == 1}
 <LibLoader url="https://platform.twitter.com/widgets.js" />
+{/if}
+
 <Bounjour />
 <Social />
 <Footer />
