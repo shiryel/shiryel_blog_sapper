@@ -44,7 +44,9 @@
     top: 5%;
     overflow: hidden;
     background-image: linear-gradient(to bottom, #cedeed, #88acdf);
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 0px 5px 5px black;
   }
 
   a {
@@ -88,7 +90,8 @@
     href="https://twitter.com/shiryel_?ref_src=twsrc%5Etfw"
     data-width="300"
     data-height="90vh"
-    data-chrome="nofooter noborders transparent">
+    data-chrome="noheader nofooter noborders transparent"
+    data-dnt="true">
     Tweets by shiryel_
   </a>
 </div>
