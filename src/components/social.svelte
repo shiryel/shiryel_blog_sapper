@@ -58,12 +58,12 @@
     }
 
     .right {
-      padding-right: 20%;
+      padding-right: 5%;
       padding-top: 1em;
     }
   }
 
-  @media (min-width: 1700px) {
+  @media (min-width: 1600px) {
     .social {
       display: block;
     }
@@ -89,7 +89,7 @@
   <a
     class="twitter-timeline"
     href="https://twitter.com/shiryel_?ref_src=twsrc%5Etfw"
-    data-width="350"
+    data-width="300"
     data-height="90vh"
     data-chrome="nofooter noborders transparent">
     Tweets by shiryel_
