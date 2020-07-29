@@ -1,6 +1,6 @@
 <script>
-
 </script>
+
 
 <style>
   .left {
@@ -81,9 +81,6 @@
     data-size="large">
     Follow @shiryel_
   </a>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
-
-  </script>
 </div>
 <div class="social">
   <a
@@ -94,7 +91,4 @@
     data-chrome="nofooter noborders transparent">
     Tweets by shiryel_
   </a>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
-
-  </script>
 </div>
