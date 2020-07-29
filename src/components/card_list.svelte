@@ -17,6 +17,7 @@
     padding-top: 3px;
     padding-right: 20px;
     padding-left: 1px;
+    font-size: 1.8em;
     border-top: 2px solid black;
     float: left;
   }

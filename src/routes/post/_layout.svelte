@@ -25,11 +25,21 @@
 		all elements inside .content
 	*/
   .content :global(h1) {
+    font-size: 2.2em;
+    font-weight: bold;
     text-align: center;
     padding: 2em;
   }
   .content :global(h2) {
-    font-size: 1.5em;
+    font-size: 1.8em;
+    font-weight: bold;
+  }
+  .content :global(h3) {
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+  .content :global(p) {
+    font-size: 1.3em;
   }
   .content :global(ul) {
     line-height: 1.5;
@@ -39,7 +49,7 @@
   }
 
   div {
-    background-color: #CEDEED;
+    background-image: linear-gradient(to bottom, #cedeed, #88acdf);
     padding: 1em;
   }
 

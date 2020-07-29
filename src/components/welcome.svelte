@@ -114,13 +114,17 @@
   }
 
   p {
-    font-size: 1.2em;
+    font-size: 1.4em;
     color: #680578;
   }
 
   h1 {
-    font-family: 'Balsamiq Sans', cursive;
-    font-size: 2em;
+    font-family: 'balsamiq_sansregular';
+    font-size: 3em;
+  }
+
+  span {
+    font-size: 1.3em;
   }
 
   .info_text {

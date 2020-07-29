@@ -7,7 +7,7 @@
 
 # How to push a static website to AWS using github actions
 
-### This is my personal default template for npm projects:
+This is my personal default template for npm projects:
 
 ```yml
 name: Push to AWS [CD]
@@ -138,4 +138,4 @@ Modify the `__sapper__/export` and `/www/shiryel_blog` for your needs :)
       run: rm -f temp.pem
 ```
 
-### That is all folks, have a grat day :)
+That is all folks, have a grat day :)

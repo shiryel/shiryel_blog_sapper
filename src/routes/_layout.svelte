@@ -21,13 +21,16 @@
 
   .background-1 {
     position: fixed;
-    background-image: linear-gradient(to bottom, #88acdf, #516582);
-    height: 100%;
-    width: 100%;
+    /*background-image: linear-gradient(to bottom, #88acdf, #516582);*/
+    top: -5px;
+    left: -5px;
+    height: 101%;
+    width: 101%;
+    animation: rm-blur 5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   }
 
   .background-2 {
-    background-color: #cedeed;
+    background-image: linear-gradient(to bottom, #cedeed, #88acdf, #516582);
     box-shadow: 0px 5px 5px black;
     justify-self: center;
     max-width: 1000px;
@@ -54,7 +57,7 @@
 <Bounjour />
 <Social />
 <Footer />
-<div class="background-1" />
+<img src="background.jpg" alt="" class="background-1" />
 <main>
   <aside />
   <div class="background-2">
