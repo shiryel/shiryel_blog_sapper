@@ -7,7 +7,7 @@
   <meta name="description" content="A blog post as a reminder on how to use only one certificate with certbot and nginx">
   <meta name="keywords" content="aws, certbot, nginx">
 
-  <meta property="og:title" content="How to use only one certificate with certbot and nginx" />
+  <meta property="og:title" content="Use only one certificate with certbot and nginx" />
   <meta property="og:description" content="A reminder on how to use only one certificate with certbot and nginx with the minimum of enfort" />
 </svelte:head>
 
