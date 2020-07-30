@@ -18,7 +18,7 @@ jobs:
       run: npm i
     
     - name: NPM - export
-      run: npm run export --entry '/ sitemap.xml'
+      run: npm run export
 
     - name: AWS - Set PEM
       run: |

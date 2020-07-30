@@ -44,7 +44,7 @@
   <div class="name">
     <h2>{name}</h2>
   </div>
-  <div class="cards">
+  <div class="cards" itemscope itemtype="http://schema.org/TechArticle">
     {#each cards as { title, description, tags, slug }}
       <Card {title} {description} {tags} {slug} />
     {/each}

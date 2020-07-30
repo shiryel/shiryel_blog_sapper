@@ -31,13 +31,31 @@
 </style>
 
 <svelte:head>
-  <meta name="description" content="Shiryel blog with tips on how to work with not so trivial things and others">
-  <meta name="keywords" content="shiryel, blog, elixir, aws, svelte">
-  <title>Shiryel's Blog</title>
+  <title>Shiryel's Blog - The tech space of the fennec</title>
+
+  <meta
+    name="description"
+    content="Shiryel blog with tips on how to work with not so trivial things
+    and others" />
+  <meta name="keywords" content="shiryel, blog, elixir, aws, svelte" />
+
+  <meta property="og:title" content="Shiryel's Blog" />
+  <meta
+    property="og:description"
+    content="A Fennec Tech Blog, a place where I put some reminders for myself" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://blog.shiryel.com/" />
+  <meta
+    property="og:image"
+    content="https://blog.shiryel.com/images/logo-512.png" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@shiryel_" />
+  <meta name="twitter:creator" content="@shiryel_" />
 </svelte:head>
 
 <section>
-    <Welcome />
-    <CardList name="Featured" cards={posts} />
-    <CardList name="Last Posts" cards={posts} />
+  <Welcome />
+  <CardList name="Featured" cards={posts} />
+  <CardList name="Last Posts" cards={posts} />
 </section>

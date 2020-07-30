@@ -13,6 +13,7 @@
   import CardList from "../../components/card_list.svelte";
 
   export let posts;
+  export let segment;
 </script>
 
 <style>
@@ -90,6 +91,11 @@
 
 <svelte:head>
   <link href="prism.css" rel="stylesheet" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://blog.shiryel.com/posts/{segment}" />
+  <meta
+    property="og:image"
+    content="https://blog.shiryel.com/images/logo-512.png" />
 </svelte:head>
 
 <div class="div">
@@ -97,7 +103,7 @@
     <a href="/">Home</a>
   </aside>
 
-  <article class="content">
+  <article class="content" itemscope itemtype="http://schema.org/TechArticle">
     <slot />
   </article>
 

@@ -66,14 +66,14 @@
   animation_out={'fade-out 0.3s cubic-bezier(0.35, 0.5, 0.65, 0.95) both'}
   top=50
   bottom=50>
-<a href={`/post/${slug}`}>
+<a href={`/post/${slug}`} itemprop="url">
   <div>
-    <h3>{title}</h3>
+    <h3 itemprop="name">{title}</h3>
   </div>
-  <p>{description}</p>
+  <p itemprop="description">{description}</p>
   <aside>
     {#each tags as tag}
-      <span>{tag}</span>
+      <span itemprop="keywords">{tag}</span>
     {/each}
   </aside>
 </a>

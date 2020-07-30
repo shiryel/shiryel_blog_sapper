@@ -3,6 +3,14 @@
   import Social from "../components/social.svelte";
   import Bounjour from "../components/bounjour.svelte";
   import LibLoader from "../components/lib_loader.svelte";
+  import { onMount } from "svelte";
+
+  let loaded = 0;
+
+  onMount(async () => {
+    // For some reason the svelte can start LibLoader 2 times sometimes...
+    loaded += 1;
+  });
 </script>
 
 <style>
@@ -38,6 +46,10 @@
     width: 100vw;
   }
 
+  .sitemap {
+    display: none;
+  }
+
   @media (min-width: 1600px) {
     aside {
       display: block;
@@ -55,12 +67,22 @@
   }
 </style>
 
-<LibLoader url="https://platform.twitter.com/widgets.js" />
+{#if loaded == 1}
+  <LibLoader url="https://platform.twitter.com/widgets.js" />
+{/if}
+
+<!-- Waiting for the PR: https://github.com/sveltejs/sapper/issues/1289 -->
+<div class="sitemap">
+  <a href="sitemap.xml">sitemap</a>
+</div>
 
 <Bounjour />
 <Social />
 <Footer />
-<img src="background.jpg" alt="A mountain background" class="background-1" />
+<img
+  src="images/background.jpg"
+  alt="A mountain background"
+  class="background-1" />
 <main>
   <aside />
   <div class="background-2">

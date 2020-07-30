@@ -46,12 +46,12 @@
     <img
       class="left"
       alt="a fennec saying bounjour, part 1"
-      src="bounjour-1.png" />
+      src="images/bounjour-1.png" />
   </Saos>
   <Saos
     animation={'from-top 5s cubic-bezier(0.35, 0.5, 0.65, 0.95) both'}
     css_observer="z-index: 10;"
     once=true>
-    <img alt="a fennec saying bounjour, part 2" src="bounjour-2.png" />
+    <img alt="a fennec saying bounjour, part 2" src="images/bounjour-2.png" />
   </Saos>
 </div>

@@ -3,11 +3,15 @@
 
 <svelte:head>
   <title>How to push a static website to AWS using github actions</title>
+
   <meta name="description" content="A blog post as a reminder on how to work with static websites on AWS using github actions">
   <meta name="keywords" content="aws, github actions, static website">
+
+  <meta property="og:title" content="How to push a static website to AWS using github actions" />
+  <meta property="og:description" content="A reminder on how to push a static website to AWS using github actions with the minimum of enfort" />
 </svelte:head>
 
-# How to push a static website to AWS using github actions
+<h1 itemprop="name"> How to push a static website to AWS using github actions </h1>
 
 This is my personal default template for npm projects:
 
