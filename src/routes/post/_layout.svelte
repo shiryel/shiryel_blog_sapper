@@ -111,6 +111,7 @@
     <a
       class="twitter-share-button"
       href="https://twitter.com/intent/tweet?text=Take%20a%20look%20on%20this%20"
+      rel="noopener"
       data-size="large"
       data-hashtags="shiryel_blog">
       Tweet

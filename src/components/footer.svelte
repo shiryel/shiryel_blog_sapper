@@ -26,7 +26,7 @@
 </style>
 
 <footer>
-    <a href="https://github.com/shiryel/shiryel_blog" target="_blank">
+    <a href="https://github.com/shiryel/shiryel_blog" rel="noopener" target="_blank">
       {'See on Github'}
     </a>
 </footer>

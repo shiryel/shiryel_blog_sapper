@@ -75,11 +75,12 @@
 </style>
 
 <div class="left">
-  <a href="https://www.shiryel.com/" target="_blank">Shiryel's Den</a>
+  <a href="https://www.shiryel.com/" rel="noopener" target="_blank">Shiryel's Den</a>
 </div>
 <div class="right">
   <a
     href="https://twitter.com/shiryel_?ref_src=twsrc%5Etfw"
+    rel="noopener"
     class="twitter-follow-button"
     data-show-count="false"
     data-size="large">
@@ -90,6 +91,7 @@
   <a
     class="twitter-timeline"
     href="https://twitter.com/shiryel_?ref_src=twsrc%5Etfw"
+    rel="noopener"
     data-width="300"
     data-height="90vh"
     data-chrome="noheader nofooter noborders transparent"
