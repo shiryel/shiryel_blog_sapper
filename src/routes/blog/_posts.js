@@ -9,6 +9,13 @@
 
 const posts = [
 	{
+		title: 'Testing Phoenix Channels on Browser console',
+		slug: 'testing-phoenix-channels-on-browser-console',
+    description: '',
+    tags: ['phoenix framework', 'elixir', 'phoenix channels', 'manual test'],
+    date: "2020-08-02"
+	},
+	{
 		title: 'How to use only one certificate with certbot and nginx',
 		slug: 'how-to-use-only-one-certificate-with-certbot-and-nginx',
     description: '',
