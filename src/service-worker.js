@@ -39,6 +39,9 @@ self.addEventListener('fetch', event => {
 	// don't try to handle e.g. data: URIs
 	if (!url.protocol.startsWith('http')) return;
 
+  // don't try to handle blog.json
+  if (url.pathname == "/blog.json") return;
+
 	// ignore dev server requests
 	if (url.hostname === self.location.hostname && url.port !== self.location.port) return;
 
