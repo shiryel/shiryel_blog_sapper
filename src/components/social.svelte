@@ -1,6 +1,6 @@
 <script>
-</script>
 
+</script>
 
 <style>
   .left {
@@ -75,7 +75,9 @@
 </style>
 
 <div class="left">
-  <a href="https://www.shiryel.com/" rel="noopener" target="_blank">Shiryel's Den</a>
+  <a href="https://www.shiryel.com/" rel="noopener" target="_blank">
+    Shiryel's Den
+  </a>
 </div>
 <div class="right">
   <a
@@ -98,4 +100,7 @@
     data-dnt="true">
     Tweets by shiryel_
   </a>
+  <script src="https://platform.twitter.com/widgets.js">
+
+  </script>
 </div>

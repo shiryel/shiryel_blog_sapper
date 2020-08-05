@@ -3,7 +3,6 @@
     return this.fetch(`blog.json`)
       .then((r) => r.json())
       .then((posts) => {
-        console.log(posts);
         return { posts };
       });
   }
@@ -14,6 +13,16 @@
 
   export let posts;
   export let segment;
+  let comments;
+
+  function handleComments() {
+    comments.contentWindow.postMessage({ id: segment, admin: "" }, "*");
+  }
+
+  // receive the message from the Open Comment
+  function handleMessage(event) {
+    console.log(event.data);
+  }
 </script>
 
 <style>
@@ -89,6 +98,7 @@
   }
 </style>
 
+<svelte:window on:message={handleMessage} />
 <svelte:head>
   <link href="prism.css" rel="stylesheet" />
   <meta property="og:type" content="article" />
@@ -116,6 +126,9 @@
       data-hashtags="shiryel_blog">
       Tweet
     </a>
+    <script src="https://platform.twitter.com/widgets.js">
+
+    </script>
   </div>
 
   <aside>
@@ -125,5 +138,4 @@
   <aside>
     <CardList name="More" cards={posts} />
   </aside>
-
 </div>

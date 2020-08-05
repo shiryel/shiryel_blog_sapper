@@ -2,15 +2,7 @@
   import Footer from "../components/footer.svelte";
   import Social from "../components/social.svelte";
   import Bounjour from "../components/bounjour.svelte";
-  import LibLoader from "../components/lib_loader.svelte";
   import { onMount } from "svelte";
-
-  let loaded = 0;
-
-  onMount(async () => {
-    // For some reason the svelte can start LibLoader 2 times sometimes...
-    loaded += 1;
-  });
 </script>
 
 <style>
@@ -66,10 +58,6 @@
     }
   }
 </style>
-
-{#if loaded == 1}
-  <LibLoader url="https://platform.twitter.com/widgets.js" />
-{/if}
 
 <!-- Waiting for the PR: https://github.com/sveltejs/sapper/issues/1289 -->
 <div class="sitemap">
