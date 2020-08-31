@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+      <loc>https://www.blog.shiryel.com</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+  
+    <url>
+      <loc>https://www.blog.shiryel.com/post/testing-phoenix-channels-on-browser-console/</loc>
+      <lastmod>2020-08-02T00:00:00.000Z</lastmod>
+      <changefreq>mounth</changefreq>
+      <priority>1</priority>
+    </url>
+  
+
+    <url>
+      <loc>https://www.blog.shiryel.com/post/how-to-use-only-one-certificate-with-certbot-and-nginx/</loc>
+      <lastmod>2020-07-23T00:00:00.000Z</lastmod>
+      <changefreq>mounth</changefreq>
+      <priority>1</priority>
+    </url>
+  
+
+    <url>
+      <loc>https://www.blog.shiryel.com/post/how-to-push-a-static-website-to-aws-using-github-actions/</loc>
+      <lastmod>2020-07-20T00:00:00.000Z</lastmod>
+      <changefreq>mounth</changefreq>
+      <priority>1</priority>
+    </url>
+  
+
+    <url>
+      <loc>https://www.blog.shiryel.com/post/how-to-add-svelte-on-elixir-phoenix-framework/</loc>
+      <lastmod>2020-07-17T00:00:00.000Z</lastmod>
+      <changefreq>mounth</changefreq>
+      <priority>1</priority>
+    </url>
+  
+</urlset>

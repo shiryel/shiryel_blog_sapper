@@ -1,0 +1,146 @@
+<!doctype html> <html lang=en> <head> <meta charset=utf-8> <meta content="width=device-width,initial-scale=1" name=viewport> <meta content=#333333 name=theme-color> <meta content=Shiryel name=author> <base href=/ > <link href=global.css rel=stylesheet> <link href=manifest.json rel=manifest crossorigin=use-credentials> <link href=favicon.png rel=icon type=image/png> <link href=client/main.2808251323.css rel=stylesheet><link href=client/_layout.af1c2213.css rel=stylesheet><link href=client/client.4494866b.css rel=stylesheet><link href=client/card_list.5dae2bd3.css rel=stylesheet> <title>How to use only one certificate with certbot and nginx</title><link href=prism.css rel=stylesheet><meta content=article property=og:type><meta content=https://blog.shiryel.com/posts/how-to-use-only-one-certificate-with-certbot-and-nginx property=og:url><meta content=https://blog.shiryel.com/images/logo-512.png property=og:image><meta content="A blog post as a reminder on how to use only one certificate with certbot and nginx" name=description><meta content="aws, certbot, nginx" name=keywords><meta content="Use only one certificate with certbot and nginx" property=og:title><meta content="A reminder on how to use only one certificate with certbot and nginx with the minimum of enfort" property=og:description> <link href=/client/main.2808251323.css rel=preload as=style><link href=/client/client.4494866b.css rel=preload as=style></head> <body> <div id=sapper> <div class="svelte-1eiuix0 sitemap"><a href=sitemap.xml>sitemap</a></div> <div class=svelte-fg83id><div style=z-index:10;justify-self:end id=__saos-0.5624053895683387__><div style="animation:from-top 5s cubic-bezier(.35,.5,.65,.95) both"><img alt="a fennec saying bounjour, part 1" class="svelte-fg83id left" src=images/bounjour-1.png></div></div> <div style=z-index:10 id=__saos-0.6093896596329653__><div style="animation:from-top 5s cubic-bezier(.35,.5,.65,.95) both"><img alt="a fennec saying bounjour, part 2" class=svelte-fg83id src=images/bounjour-2.png></div></div></div> <div class="svelte-1ey4nwp left"><a href=https://www.shiryel.com/ class=svelte-1ey4nwp rel=noopener target=_blank>Shiryel's Den </a></div> <div class="svelte-1ey4nwp right"><a href="https://twitter.com/shiryel_?ref_src=twsrc%5Etfw" class="svelte-1ey4nwp twitter-follow-button" rel=noopener data-size=large data-show-count=false>Follow @shiryel_ </a></div> <div class="svelte-1ey4nwp social"><a href="https://twitter.com/shiryel_?ref_src=twsrc%5Etfw" class="svelte-1ey4nwp twitter-timeline" rel=noopener data-chrome="noheader nofooter noborders transparent" data-dnt=true data-height=90vh data-width=300>Tweets by shiryel_ </a> <script src=https://platform.twitter.com/widgets.js></script></div> <footer><a href=https://github.com/shiryel/shiryel_blog class=svelte-1spf4py rel=noopener target=_blank>See on Github</a></footer> <img alt="A mountain background" class="svelte-1eiuix0 background-1" src=images/background.jpg> <main class=svelte-1eiuix0><aside class=svelte-1eiuix0></aside> <div class="svelte-1eiuix0 background-2"> <div class="svelte-17vs08x div"><aside class=svelte-17vs08x><a href=/ class=svelte-17vs08x>Home</a></aside> <article class="svelte-17vs08x content" itemscope itemtype=http://schema.org/TechArticle> <h1 itemprop=name>How to use only one certificate with certbot and nginx </h1> <p>This is more a reminder for myself but anyway</p> <p>First, you need to generate the certificate with the certbot on the AWS, you need to put both the www and non-www url, otherwise the redirect will be invalid or the website will display a invalid certificate</p> <pre class=language-bash><code class=language-bash>  <span class="token function">sudo</span> certbot  -d shiryel.com -d www.shiryel.com -d blog.shiryel.com -d www.blog.shiryel.com -d webrtc.shiryel.com -d www.webrtc.shiryel.com</code></pre> <p>Then, you need a Nginx like this:</p> <pre class=language-nginx><code class=language-nginx><span class="token comment"># For more information on configuration, see:</span>
+<span class="token comment">#   * Official English Documentation: http://nginx.org/en/docs/</span>
+<span class="token comment">#   * Official Russian Documentation: http://nginx.org/ru/docs/</span>
+
+<span class="token keyword">user</span> nginx<span class="token punctuation">;</span>
+<span class="token keyword">worker_processes</span> auto<span class="token punctuation">;</span>
+<span class="token keyword">error_log</span> <span class="token operator">/</span>var<span class="token operator">/</span>log<span class="token operator">/</span>nginx<span class="token operator">/</span>error<span class="token punctuation">.</span>log<span class="token punctuation">;</span>
+<span class="token keyword">pid</span> <span class="token operator">/</span>run<span class="token operator">/</span>nginx<span class="token punctuation">.</span><span class="token keyword">pid</span><span class="token punctuation">;</span>
+
+<span class="token keyword">events</span> <span class="token punctuation">{</span>
+	<span class="token keyword">worker_connections</span> <span class="token number">1024</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">http</span> <span class="token punctuation">{</span>
+	<span class="token keyword">log_format</span> main <span class="token string">'$remote_addr - $remote_user [$time_local] "$request" '</span>
+		<span class="token string">'$status $body_bytes_sent "$http_referer" '</span>
+		<span class="token string">'"$http_user_agent" "$http_x_forwarded_for"'</span><span class="token punctuation">;</span>
+	<span class="token keyword">access_log</span> <span class="token operator">/</span>var<span class="token operator">/</span>log<span class="token operator">/</span>nginx<span class="token operator">/</span>access<span class="token punctuation">.</span>log main<span class="token punctuation">;</span>
+
+	<span class="token keyword">sendfile</span> on<span class="token punctuation">;</span>
+	<span class="token keyword">tcp_nopush</span> on<span class="token punctuation">;</span>
+	<span class="token keyword">tcp_nodelay</span> on<span class="token punctuation">;</span>
+	<span class="token keyword">keepalive_timeout</span> <span class="token number">65</span><span class="token punctuation">;</span>
+	<span class="token keyword">types_hash_max_size</span> <span class="token number">2048</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">include</span> <span class="token operator">/</span>etc<span class="token operator">/</span>nginx<span class="token operator">/</span>mime<span class="token punctuation">.</span><span class="token keyword">types</span><span class="token punctuation">;</span>
+	<span class="token keyword">default_type</span> text<span class="token operator">/</span>plain<span class="token punctuation">;</span>
+
+	<span class="token comment">###########</span>
+	<span class="token comment"># CERTBOT #</span>
+	<span class="token comment">###########</span>
+
+  <span class="token keyword">ssl_certificate</span> <span class="token operator">/</span>etc<span class="token operator">/</span>letsencrypt<span class="token operator">/</span>live<span class="token operator">/</span>shiryel<span class="token punctuation">.</span>com<span class="token operator">/</span>fullchain<span class="token punctuation">.</span>pem<span class="token punctuation">;</span> <span class="token comment"># managed by Certbot</span>
+  <span class="token keyword">ssl_certificate_key</span> <span class="token operator">/</span>etc<span class="token operator">/</span>letsencrypt<span class="token operator">/</span>live<span class="token operator">/</span>shiryel<span class="token punctuation">.</span>com<span class="token operator">/</span>privkey<span class="token punctuation">.</span>pem<span class="token punctuation">;</span> <span class="token comment"># managed by Certbot</span>
+	<span class="token keyword">ssl_dhparam</span> <span class="token operator">/</span>etc<span class="token operator">/</span>letsencrypt<span class="token operator">/</span><span class="token keyword">ssl</span><span class="token operator">-</span>dhparams<span class="token punctuation">.</span>pem<span class="token punctuation">;</span>
+	<span class="token comment"># Automatic important security parameters (provided by certbot)</span>
+	<span class="token keyword">include</span> <span class="token operator">/</span>etc<span class="token operator">/</span>letsencrypt<span class="token operator">/</span>options<span class="token operator">-</span><span class="token keyword">ssl</span><span class="token operator">-</span>nginx<span class="token punctuation">.</span>conf<span class="token punctuation">;</span>
+
+	<span class="token comment">#################</span>
+	<span class="token comment"># ENFORCE HTTPS #</span>
+	<span class="token comment">#################</span>
+
+	<span class="token keyword">server</span> <span class="token punctuation">{</span>
+		<span class="token keyword">listen</span> <span class="token number">80</span> default_server<span class="token punctuation">;</span>
+		<span class="token keyword">server_name</span> _<span class="token punctuation">;</span>
+	
+		<span class="token keyword">return</span> <span class="token number">301</span> <span class="token keyword">https</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token variable">$host</span><span class="token variable">$request_uri</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token comment">########</span>
+	<span class="token comment"># HOME #</span>
+	<span class="token comment">########</span>
+
+	<span class="token comment"># Dont have non-www because the DNS redirect to WWW</span>
+	<span class="token keyword">server</span> <span class="token punctuation">{</span>
+		<span class="token keyword">server_name</span> www<span class="token punctuation">.</span>shiryel<span class="token punctuation">.</span>com<span class="token punctuation">;</span>
+		<span class="token keyword">listen</span> <span class="token number">443</span> <span class="token keyword">ssl</span> http2<span class="token punctuation">;</span>
+		<span class="token keyword">listen</span> <span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token number">443</span> <span class="token keyword">ssl</span> http2<span class="token punctuation">;</span>
+
+		<span class="token keyword">location</span> <span class="token operator">/</span> <span class="token punctuation">{</span>
+			<span class="token keyword">root</span> <span class="token operator">/</span>www<span class="token operator">/</span>shiryel<span class="token punctuation">;</span>
+			<span class="token keyword">index</span> shiryel<span class="token punctuation">.</span>html<span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token comment">##########</span>
+	<span class="token comment"># WEBRTC #</span>
+	<span class="token comment">##########</span>
+
+	<span class="token keyword">upstream</span> docker<span class="token operator">-</span>webrtc <span class="token punctuation">{</span>
+		<span class="token keyword">server</span> <span class="token number">0.0</span><span class="token number">.0</span><span class="token number">.0</span><span class="token punctuation">:</span><span class="token number">5001</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">upstream</span> docker<span class="token operator">-</span>webrtc<span class="token operator">-</span><span class="token keyword">server</span> <span class="token punctuation">{</span>
+		<span class="token keyword">server</span> <span class="token number">0.0</span><span class="token number">.0</span><span class="token number">.0</span><span class="token punctuation">:</span><span class="token number">4001</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">map</span> <span class="token variable">$http_upgrade</span> <span class="token variable">$connection_upgrade</span> <span class="token punctuation">{</span>
+		default upgrade<span class="token punctuation">;</span>
+		<span class="token string">''</span>      close<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">server</span> <span class="token punctuation">{</span>
+		<span class="token keyword">server_name</span> www<span class="token punctuation">.</span>webrtc<span class="token punctuation">.</span>shiryel<span class="token punctuation">.</span>com<span class="token punctuation">;</span>
+		<span class="token keyword">listen</span> <span class="token number">443</span> <span class="token keyword">ssl</span> http2<span class="token punctuation">;</span>
+		<span class="token keyword">listen</span> <span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token number">443</span> <span class="token keyword">ssl</span> http2<span class="token punctuation">;</span>
+
+		<span class="token keyword">return</span> <span class="token number">301</span> <span class="token variable">$scheme</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>webrtc<span class="token punctuation">.</span>shiryel<span class="token punctuation">.</span>com<span class="token operator">/</span><span class="token variable">$request_uri</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">server</span> <span class="token punctuation">{</span>
+		<span class="token keyword">server_name</span> webrtc<span class="token punctuation">.</span>shiryel<span class="token punctuation">.</span>com<span class="token punctuation">;</span>
+		<span class="token keyword">listen</span> <span class="token number">443</span> <span class="token keyword">ssl</span> http2<span class="token punctuation">;</span>
+		<span class="token keyword">listen</span> <span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token number">443</span> <span class="token keyword">ssl</span> http2<span class="token punctuation">;</span>
+
+		<span class="token keyword">location</span> <span class="token operator">/</span> <span class="token punctuation">{</span>
+			<span class="token keyword">proxy_pass</span>         <span class="token keyword">http</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>docker<span class="token operator">-</span>webrtc<span class="token punctuation">;</span>
+			<span class="token keyword">proxy_redirect</span>     off<span class="token punctuation">;</span>
+			<span class="token keyword">proxy_set_header</span>   Host <span class="token variable">$host</span><span class="token punctuation">;</span>
+			<span class="token keyword">proxy_set_header</span>   X<span class="token operator">-</span>Real<span class="token operator">-</span>IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+			<span class="token keyword">proxy_set_header</span>   X<span class="token operator">-</span>Forwarded<span class="token operator">-</span>For <span class="token variable">$proxy_add_x_forwarded_for</span><span class="token punctuation">;</span>
+			<span class="token keyword">proxy_set_header</span>   X<span class="token operator">-</span>Forwarded<span class="token operator">-</span>Host <span class="token variable">$server_name</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">server</span> <span class="token punctuation">{</span>
+		<span class="token keyword">server_name</span> webrtc<span class="token operator">-</span><span class="token keyword">server</span><span class="token punctuation">.</span>shiryel<span class="token punctuation">.</span>com www<span class="token punctuation">.</span>webrtc<span class="token operator">-</span><span class="token keyword">server</span><span class="token punctuation">.</span>shiryel<span class="token punctuation">.</span>com<span class="token punctuation">;</span>
+		<span class="token keyword">listen</span> <span class="token number">443</span> <span class="token keyword">ssl</span> http2<span class="token punctuation">;</span>
+		<span class="token keyword">listen</span> <span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token number">443</span> <span class="token keyword">ssl</span> http2<span class="token punctuation">;</span>
+
+		<span class="token keyword">location</span> <span class="token operator">/</span> <span class="token punctuation">{</span>
+			<span class="token keyword">proxy_pass</span>         <span class="token keyword">http</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>docker<span class="token operator">-</span>webrtc<span class="token operator">-</span><span class="token keyword">server</span><span class="token punctuation">;</span>
+			<span class="token keyword">proxy_set_header</span>   Host <span class="token variable">$host</span><span class="token punctuation">;</span>
+			<span class="token keyword">proxy_set_header</span>   X<span class="token operator">-</span>Real<span class="token operator">-</span>IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+			<span class="token keyword">proxy_set_header</span>   X<span class="token operator">-</span>Forwarded<span class="token operator">-</span>For <span class="token variable">$proxy_add_x_forwarded_for</span><span class="token punctuation">;</span>
+			<span class="token keyword">proxy_set_header</span>   X<span class="token operator">-</span>Forwarded<span class="token operator">-</span>Host <span class="token variable">$server_name</span><span class="token punctuation">;</span>
+
+			<span class="token comment"># WebSocket support</span>
+			<span class="token keyword">proxy_http_version</span> <span class="token number">1.1</span><span class="token punctuation">;</span>
+			<span class="token keyword">proxy_set_header</span>   Upgrade <span class="token variable">$http_upgrade</span><span class="token punctuation">;</span>
+			<span class="token keyword">proxy_set_header</span>   Connection <span class="token variable">$connection_upgrade</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token comment">########</span>
+	<span class="token comment"># BLOG #</span>
+	<span class="token comment">########</span>
+
+	<span class="token keyword">server</span> <span class="token punctuation">{</span>
+		<span class="token keyword">server_name</span> www<span class="token punctuation">.</span>blog<span class="token punctuation">.</span>shiryel<span class="token punctuation">.</span>com<span class="token punctuation">;</span>
+		<span class="token keyword">listen</span> <span class="token number">443</span> <span class="token keyword">ssl</span> http2<span class="token punctuation">;</span>
+		<span class="token keyword">listen</span> <span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token number">443</span> <span class="token keyword">ssl</span> http2<span class="token punctuation">;</span>
+
+		<span class="token keyword">return</span> <span class="token number">301</span> <span class="token variable">$scheme</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>blog<span class="token punctuation">.</span>shiryel<span class="token punctuation">.</span>com<span class="token operator">/</span><span class="token variable">$request_uri</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">server</span> <span class="token punctuation">{</span>
+		<span class="token keyword">server_name</span> blog<span class="token punctuation">.</span>shiryel<span class="token punctuation">.</span>com<span class="token punctuation">;</span>
+		<span class="token keyword">listen</span> <span class="token number">443</span> <span class="token keyword">ssl</span> http2<span class="token punctuation">;</span>
+		<span class="token keyword">listen</span> <span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token number">443</span> <span class="token keyword">ssl</span> http2<span class="token punctuation">;</span>
+
+		<span class="token keyword">location</span> <span class="token operator">/</span> <span class="token punctuation">{</span>
+			<span class="token keyword">root</span> <span class="token operator">/</span>www<span class="token operator">/</span>shiryel_blog<span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre> <p>Yes, good luck with the nginx file, I alread have a bad time learning all this shit :)</article> <div class="svelte-17vs08x twitter"><a href="https://twitter.com/intent/tweet?text=Take%20a%20look%20on%20this%20" class="svelte-17vs08x twitter-share-button" rel=noopener data-size=large data-hashtags=shiryel_blog>Tweet </a> <script src=https://platform.twitter.com/widgets.js></script></div> <aside class=svelte-17vs08x><a href=/ class=svelte-17vs08x>Home</a></aside> <aside class=svelte-17vs08x><section class=svelte-1r4o3mm><div class="svelte-1r4o3mm name"><h2 class=svelte-1r4o3mm>More</h2></div> <div class="svelte-1r4o3mm cards" itemscope itemtype=http://schema.org/TechArticle><div style="" id=__saos-0.2883849563853016__><div style="animation:fade-in .3s cubic-bezier(.35,.5,.65,.95) both"><a href=/post/testing-phoenix-channels-on-browser-console class=svelte-zrtu8 itemprop=url><div><h3 class=svelte-zrtu8 itemprop=name>Testing Phoenix Channels on Browser console</h3></div> <p class=svelte-zrtu8 itemprop=description></p> <aside class=svelte-zrtu8><span class=svelte-zrtu8 itemprop=keywords>phoenix framework</span><span class=svelte-zrtu8 itemprop=keywords>elixir</span><span class=svelte-zrtu8 itemprop=keywords>phoenix channels</span><span class=svelte-zrtu8 itemprop=keywords>manual test</span></aside></a></div></div><div style="" id=__saos-0.8309783942095785__><div style="animation:fade-in .3s cubic-bezier(.35,.5,.65,.95) both"><a href=/post/how-to-use-only-one-certificate-with-certbot-and-nginx class=svelte-zrtu8 itemprop=url><div><h3 class=svelte-zrtu8 itemprop=name>How to use only one certificate with certbot and nginx</h3></div> <p class=svelte-zrtu8 itemprop=description></p> <aside class=svelte-zrtu8><span class=svelte-zrtu8 itemprop=keywords>nginx</span><span class=svelte-zrtu8 itemprop=keywords>certbot</span><span class=svelte-zrtu8 itemprop=keywords>aws</span><span class=svelte-zrtu8 itemprop=keywords>continuous integration</span></aside></a></div></div><div style="" id=__saos-0.7121517859182118__><div style="animation:fade-in .3s cubic-bezier(.35,.5,.65,.95) both"><a href=/post/how-to-push-a-static-website-to-aws-using-github-actions class=svelte-zrtu8 itemprop=url><div><h3 class=svelte-zrtu8 itemprop=name>How to push a static website to AWS using github actions</h3></div> <p class=svelte-zrtu8 itemprop=description></p> <aside class=svelte-zrtu8><span class=svelte-zrtu8 itemprop=keywords>github actions</span><span class=svelte-zrtu8 itemprop=keywords>aws</span><span class=svelte-zrtu8 itemprop=keywords>continuous integration</span></aside></a></div></div><div style="" id=__saos-0.13644519453140092__><div style="animation:fade-in .3s cubic-bezier(.35,.5,.65,.95) both"><a href=/post/how-to-add-svelte-on-elixir-phoenix-framework class=svelte-zrtu8 itemprop=url><div><h3 class=svelte-zrtu8 itemprop=name>How to add Svelte on Elixir Phoenix Framework</h3></div> <p class=svelte-zrtu8 itemprop=description></p> <aside class=svelte-zrtu8><span class=svelte-zrtu8 itemprop=keywords>elixir</span><span class=svelte-zrtu8 itemprop=keywords>svelte</span></aside></a></div></div></div></section></aside> <iframe src=http://localhost:5000/ title="W3Schools Free Online Web Tutorials"></iframe></div></div> <aside class=svelte-1eiuix0></aside></main></div> <script>__SAPPER__={baseUrl:"",preloaded:[void 0,(function(a,b,c,d){return {posts:[{title:"Testing Phoenix Channels on Browser console",slug:"testing-phoenix-channels-on-browser-console",description:a,tags:["phoenix framework",b,"phoenix channels","manual test"],date:"2020-08-02"},{title:"How to use only one certificate with certbot and nginx",slug:"how-to-use-only-one-certificate-with-certbot-and-nginx",description:a,tags:["nginx","certbot",c,d],date:"2020-07-23"},{title:"How to push a static website to AWS using github actions",slug:"how-to-push-a-static-website-to-aws-using-github-actions",description:a,tags:["github actions",c,d],date:"2020-07-20"},{title:"How to add Svelte on Elixir Phoenix Framework",slug:"how-to-add-svelte-on-elixir-phoenix-framework",description:a,tags:[b,"svelte"],date:"2020-07-17"}]}}("","elixir","aws","continuous integration")),{}]};if('serviceWorker' in navigator)navigator.serviceWorker.register('/service-worker.js');(function(){try{eval("async function x(){}");var main="/client/client.4494866b.js"}catch(e){main="/client/legacy/client.73147225.js"};var s=document.createElement("script");try{new Function("if(0)import('')")();s.src=main;s.type="module";s.crossOrigin="use-credentials";}catch(e){s.src="/client/shimport@1.0.1.js";s.setAttribute("data-main",main);}document.head.appendChild(s);}());</script> 
