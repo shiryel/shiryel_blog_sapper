@@ -1,13 +1,8 @@
+name: Deploy to GitHub Pages
 on:
-  push:
-    paths:
-      - '.github/workflows/push_to_pages.yml'
-      - 'export/**'
-  pull_request:
-    paths:
-      - '.github/workflows/push_to_pages.yml'
-      - 'export/**'
-
+  push:	
+    branches:	
+      - master
 jobs:
   deploy:
     name: Deploy
@@ -15,15 +10,16 @@ jobs:
     steps:
 
     - uses: actions/checkout@v2
-
-    - name: Build and Export
-      uses: actions/setup-node@v1
+    - uses: actions/setup-node@v1
       with:
         node-version: 14.x
-        - run: npm install
-        - run: npm run export
-          env:
-            CI: true
+
+    - name: Build and Export
+      run: |
+        npm install
+        npm run export
+      env:
+        CI: true
 
     - name: Deploy to gh-pages
       uses: s0/git-publish-subdir-action@develop
