@@ -20,9 +20,12 @@ jobs:
         npm run export
       env:
         CI: true
-    
+
     - name: Add CNAME
       run: echo "blog.shiryel.com" > CNAME
+
+    - name: Remove the trash of jekyll missing the files :)
+      run: mkdir .nojekyll
 
     - name: Deploy to gh-pages
       uses: s0/git-publish-subdir-action@develop
