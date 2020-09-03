@@ -22,10 +22,10 @@ jobs:
         CI: true
 
     - name: Add CNAME
-      run: echo "blog.shiryel.com" > CNAME
+      run: echo "blog.shiryel.com/" > __sapper__/export/CNAME
 
     - name: Remove the trash of jekyll missing the files :)
-      run: mkdir .nojekyll
+      run: touch __sapper__/export/.nojekyll
 
     - name: Deploy to gh-pages
       uses: s0/git-publish-subdir-action@develop
