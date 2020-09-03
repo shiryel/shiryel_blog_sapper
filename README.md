@@ -1,6 +1,7 @@
 # Shiryel Blog
 
 ![Deploy to GitHub Pages](https://github.com/shiryel/shiryel_blog/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)
+![License](https://img.shields.io/github/license/shiryel/shiryel_blog)
 
 [![Twitter](https://img.shields.io/twitter/follow/shiryel_.svg?style=social)](https://twitter.com/shiryel_)
 
