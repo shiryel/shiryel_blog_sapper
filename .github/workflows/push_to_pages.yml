@@ -20,6 +20,9 @@ jobs:
         npm run export
       env:
         CI: true
+    
+    - name: Add CNAME
+      run: echo "blog.shiryel.com" > CNAME
 
     - name: Deploy to gh-pages
       uses: s0/git-publish-subdir-action@develop
