@@ -22,7 +22,7 @@ jobs:
         CI: true
 
     - name: Add CNAME
-      run: echo "blog.shiryel.com/" > __sapper__/export/CNAME
+      run: echo "blog.shiryel.com" > __sapper__/export/CNAME
 
     - name: Remove the trash of jekyll missing the files :)
       run: touch __sapper__/export/.nojekyll
