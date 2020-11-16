@@ -2,7 +2,6 @@
   import Footer from "../components/footer.svelte";
   import Social from "../components/social.svelte";
   import Bounjour from "../components/bounjour.svelte";
-  import { onMount } from "svelte";
 </script>
 
 <style>

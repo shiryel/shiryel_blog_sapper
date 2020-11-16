@@ -1,5 +1,5 @@
 <script context="module">
-  export function preload({ params, query }) {
+  export function preload(_) {
     return this.fetch(`blog.json`)
       .then((r) => r.json())
       .then((posts) => {
@@ -13,11 +13,6 @@
 
   export let posts;
   export let segment;
-  let comments;
-
-  function handleComments() {
-    comments.contentWindow.postMessage({ id: segment, admin: "" }, "*");
-  }
 
   // receive the message from the Open Comment
   function handleMessage(event) {
