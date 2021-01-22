@@ -10,20 +10,18 @@
 <style>
   a {
     display: flex;
-    background: none;
-    border: 1px solid white;
+    border: 1px solid rgba(240, 240, 240, 0.05);
     flex-direction: column;
     margin-bottom: 5px;
     padding-top: 7px;
     padding-left: 10px;
-    border-left: 1px solid black;
     border-top-right-radius: 10px;
     text-align: left;
-    background-color: white;
+    background-color: rgba(240, 240, 240, 0.05);
   }
 
   a:hover {
-    border: 1px solid black;
+    border: 1px solid #FBFBFBba;
   }
 
   h3 {
@@ -31,7 +29,7 @@
     margin-bottom: 7px;
     font-size: 1.7em;
     float: left;
-    color: #303030;
+    color: #FBFBFBba;
   }
 
   p {
@@ -49,8 +47,7 @@
     margin: 3px;
     font-size: 0.7em;
     border-radius: 5px;
-    color: white;
-    background-color: #4b4b4b;
+    color: #FBFBFBba;
     float: right;
   }
 
@@ -61,11 +58,6 @@
   }
 </style>
 
-<Saos
-  animation={'fade-in 0.3s cubic-bezier(0.35, 0.5, 0.65, 0.95) both'}
-  animation_out={'fade-out 0.3s cubic-bezier(0.35, 0.5, 0.65, 0.95) both'}
-  top=50
-  bottom=50>
 <a href={`/post/${slug}`} itemprop="url">
   <div>
     <h3 itemprop="name">{title}</h3>
@@ -77,4 +69,3 @@
     {/each}
   </aside>
 </a>
-</Saos>
