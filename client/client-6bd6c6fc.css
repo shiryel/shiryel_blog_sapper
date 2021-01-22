@@ -1,0 +1,111 @@
+a.svelte-1spf4py{position:fixed;background:#545454;color:white;text-decoration:none;border-top-left-radius:10px;border-top-right-radius:10px;padding:0.3em;padding-bottom:0.1em;margin-left:1em;left:0;bottom:0;z-index:10}@media(min-width: 1575px){a.svelte-1spf4py{margin-left:12em}}
+.left.svelte-s5zwdt{position:absolute;display:grid;grid-template-columns:repeat(1, auto);grid-gap:2em;background:#545454;color:white;font-size:1.2em;border-bottom-left-radius:10px;border-bottom-right-radius:10px;padding:0.3em;padding-left:2em;padding-right:2em;padding-top:0.1em;margin-left:1em;left:0;top:0;text-align:center;z-index:10}.right.svelte-s5zwdt{position:absolute;color:white;padding:0.3em;padding-right:1em;padding-top:0.3em;margin-left:1em;right:0;top:0;z-index:10}.social.svelte-s5zwdt{display:none;position:absolute;z-index:10;right:0;top:5%;overflow:hidden;background-image:linear-gradient(
+        12deg,
+        rgba(193, 193, 193, 0.05) 0%,
+        rgba(193, 193, 193, 0.05) 2%,
+        rgba(129, 129, 129, 0.05) 2%,
+        rgba(129, 129, 129, 0.05) 27%,
+        rgba(185, 185, 185, 0.05) 27%,
+        rgba(185, 185, 185, 0.05) 66%,
+        rgba(83, 83, 83, 0.05) 66%,
+        rgba(83, 83, 83, 0.05) 100%
+      ),
+      linear-gradient(
+        321deg,
+        rgba(240, 240, 240, 0.05) 0%,
+        rgba(240, 240, 240, 0.05) 13%,
+        rgba(231, 231, 231, 0.05) 13%,
+        rgba(231, 231, 231, 0.05) 34%,
+        rgba(139, 139, 139, 0.05) 34%,
+        rgba(139, 139, 139, 0.05) 71%,
+        rgba(112, 112, 112, 0.05) 71%,
+        rgba(112, 112, 112, 0.05) 100%
+      ),
+      linear-gradient(
+        236deg,
+        rgba(189, 189, 189, 0.05) 0%,
+        rgba(189, 189, 189, 0.05) 47%,
+        rgba(138, 138, 138, 0.05) 47%,
+        rgba(138, 138, 138, 0.05) 58%,
+        rgba(108, 108, 108, 0.05) 58%,
+        rgba(108, 108, 108, 0.05) 85%,
+        rgba(143, 143, 143, 0.05) 85%,
+        rgba(143, 143, 143, 0.05) 100%
+      ),
+      linear-gradient(
+        96deg,
+        rgba(53, 53, 53, 0.05) 0%,
+        rgba(53, 53, 53, 0.05) 53%,
+        rgba(44, 44, 44, 0.05) 53%,
+        rgba(44, 44, 44, 0.05) 82%,
+        rgba(77, 77, 77, 0.05) 82%,
+        rgba(77, 77, 77, 0.05) 98%,
+        rgba(8, 8, 8, 0.05) 98%,
+        rgba(8, 8, 8, 0.05) 100%
+      ),
+      linear-gradient(334deg, hsl(247, 0%, 2%), hsl(247, 0%, 2%));border-top-left-radius:10px;border-bottom-left-radius:10px;box-shadow:0px 5px 5px black;max-width:300;overflow:hidden}a.svelte-s5zwdt{text-decoration:none}@media(min-width: 1000px){.left.svelte-s5zwdt{position:fixed;margin-left:10em}.right.svelte-s5zwdt{padding-top:1em}}@media(min-width: 1600px){.social.svelte-s5zwdt{display:block}}
+main.svelte-1naqmte{position:relative;display:grid;grid-gap:5em;height:100vh;padding-top:0;padding-bottom:0;margin:0 auto}aside.svelte-1naqmte{display:none}.background-1.svelte-1naqmte{position:fixed;background-image:radial-gradient(
+        circle at center center,
+        transparent 0%,
+        rgb(33, 33, 33) 99%
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgba(163, 163, 163, 0.2) 0px,
+        rgba(163, 163, 163, 0.2) 1px,
+        transparent 1px,
+        transparent 30px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(163, 163, 163, 0.2) 0px,
+        rgba(163, 163, 163, 0.2) 1px,
+        transparent 1px,
+        transparent 30px
+      ),
+      linear-gradient(90deg, rgb(33, 33, 33), rgb(33, 33, 33));height:100%;width:100%}.background-2.svelte-1naqmte{background-image:linear-gradient(
+        12deg,
+        rgba(193, 193, 193, 0.05) 0%,
+        rgba(193, 193, 193, 0.05) 2%,
+        rgba(129, 129, 129, 0.05) 2%,
+        rgba(129, 129, 129, 0.05) 27%,
+        rgba(185, 185, 185, 0.05) 27%,
+        rgba(185, 185, 185, 0.05) 66%,
+        rgba(83, 83, 83, 0.05) 66%,
+        rgba(83, 83, 83, 0.05) 100%
+      ),
+      linear-gradient(
+        321deg,
+        rgba(240, 240, 240, 0.05) 0%,
+        rgba(240, 240, 240, 0.05) 13%,
+        rgba(231, 231, 231, 0.05) 13%,
+        rgba(231, 231, 231, 0.05) 34%,
+        rgba(139, 139, 139, 0.05) 34%,
+        rgba(139, 139, 139, 0.05) 71%,
+        rgba(112, 112, 112, 0.05) 71%,
+        rgba(112, 112, 112, 0.05) 100%
+      ),
+      linear-gradient(
+        236deg,
+        rgba(189, 189, 189, 0.05) 0%,
+        rgba(189, 189, 189, 0.05) 47%,
+        rgba(138, 138, 138, 0.05) 47%,
+        rgba(138, 138, 138, 0.05) 58%,
+        rgba(108, 108, 108, 0.05) 58%,
+        rgba(108, 108, 108, 0.05) 85%,
+        rgba(143, 143, 143, 0.05) 85%,
+        rgba(143, 143, 143, 0.05) 100%
+      ),
+      linear-gradient(
+        96deg,
+        rgba(53, 53, 53, 0.05) 0%,
+        rgba(53, 53, 53, 0.05) 53%,
+        rgba(44, 44, 44, 0.05) 53%,
+        rgba(44, 44, 44, 0.05) 82%,
+        rgba(77, 77, 77, 0.05) 82%,
+        rgba(77, 77, 77, 0.05) 98%,
+        rgba(8, 8, 8, 0.05) 98%,
+        rgba(8, 8, 8, 0.05) 100%
+      ),
+      linear-gradient(334deg, hsl(247, 0%, 2%), hsl(247, 0%, 2%));justify-self:center;max-width:1000px;width:100vw}.sitemap.svelte-1naqmte{display:none}@media(min-width: 1600px){aside.svelte-1naqmte{display:block}main.svelte-1naqmte{display:grid;grid-template-columns:1fr 1000px 1fr;grid-gap:5em;height:100vh}.background-2.svelte-1naqmte{width:1000px}}
+h1.svelte-8od9u6,p.svelte-8od9u6{margin:0 auto}h1.svelte-8od9u6{font-size:2.8em;font-weight:700;margin:0 0 0.5em 0}p.svelte-8od9u6{margin:1em auto}@media(min-width: 480px){h1.svelte-8od9u6{font-size:4em}}

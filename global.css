@@ -52,7 +52,24 @@
          url('fonts/balsamiqsans-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+}
 
+html {
+  scrollbar-color: #666666FF #2F2F2FFF;
+}
+
+html::-webkit-scrollbar {
+  cursor: pointer;
+  height: 12px;
+  width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #2F2F2FFF;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #666666FF;
 }
 
 /* RESET CSS */
@@ -62,12 +79,12 @@ body {
 	font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 	font-size: 14px;
 	line-height: 1.5;
-	color: #333333;
+	color: #FBFBFBba;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	margin: 0 0 0.5em 0;
-	font-weight: 400;
+	font-weight: 350;
 	line-height: 1.2;
 }
 
