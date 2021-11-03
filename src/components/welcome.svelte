@@ -1,17 +1,5 @@
 <script>
-  import { onMount } from 'svelte';
-
   export let info_text = "";
-
-  onMount(() => {
-		const interval = setInterval(() => {
-      welcome = welcome_list[Math.floor(Math.random() * welcome_list.length)];
-		}, 3000);
-
-		return () => {
-			clearInterval(interval);
-		};
-	});
 </script>
 
 <style>
